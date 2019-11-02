@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8042662b91e94ef68f0056fa6aef8720" Name="Diagram1">
+        <EntityTypeShape EntityType="KIMModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.Currency" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.SKItemMaster" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIMModel.SKU" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIMModel.SystemLog" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.Exchange" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIMModel.CreditTerm" Width="1.5" PointX="2.625" PointY="7.75" />
+        <EntityTypeShape EntityType="KIMModel.Customer" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.DeliveryAddr" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="KIMModel.AccountGroup" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="KIMModel.Category" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.Vendor" Width="1.5" PointX="7.375" PointY="7.625" />
+        <EntityTypeShape EntityType="KIMModel.WareHouse" Width="1.5" PointX="2.625" PointY="9.375" />
+        <EntityTypeShape EntityType="KIMModel.UOM" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.ItemMasterPic" Width="1.5" PointX="11.375" PointY="2.5" />
+        <EntityTypeShape EntityType="KIMModel.ItemMaster" Width="1.5" PointX="9.375" PointY="2.375" />
+        <EntityTypeShape EntityType="KIMModel.SKDOCH" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KIMModel.SKReceiveItem" Width="1.5" PointX="3.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

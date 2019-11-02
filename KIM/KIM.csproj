@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" />
+  <Import Project="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" />
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D63FD5B3-6220-4B73-BA7F-CD2E2EF39F6F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KIM</RootNamespace>
+    <AssemblyName>KIM</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>KIM.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="data\AccountGroup.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Category.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\CreditTerm.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Currency.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Customer.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\DeliveryAddr.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\dummy\DeliveryAddrOption.cs" />
+    <Compile Include="data\dummy\Industrial.cs" />
+    <Compile Include="data\Exchange.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\ItemMaster.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\ItemMasterPic.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\KIM1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIM1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\KIM1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\KIM1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KIM1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKDOCH.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKItemMaster.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKReceiveItem.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKU.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SystemLog.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\UOM.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\User.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\Vendor.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\WareHouse.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="models\CRTermDAL.cs" />
+    <Compile Include="models\Warehouse\StockDAL.cs" />
+    <Compile Include="views\Inventory\InventoryHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Inventory\InventoryHost.Designer.cs">
+      <DependentUpon>InventoryHost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="models\Warehouse\AccountGroupDAL.cs" />
+    <Compile Include="models\Warehouse\CategoryDAL.cs" />
+    <Compile Include="models\Warehouse\ItemMasterDAL.cs" />
+    <Compile Include="models\Warehouse\SkuDAL.cs" />
+    <Compile Include="models\Warehouse\UOMDAL.cs" />
+    <Compile Include="SCHelperExtionsion.cs" />
+    <Compile Include="models\CurrencyDAL.cs" />
+    <Compile Include="models\CustomerDAL.cs" />
+    <Compile Include="models\ExchangeDAL.cs" />
+    <Compile Include="models\VendorDAL.cs" />
+    <Compile Include="models\UserDAL.cs" />
+    <Compile Include="models\Warehouse\WarehouseDAL.cs" />
+    <Compile Include="UserComponent\SearchButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="utils\BarcodeUtils.cs" />
+    <Compile Include="utils\DataUtils.cs" />
+    <Compile Include="utils\ImageUtils.cs" />
+    <Compile Include="utils\utilcore.cs" />
+    <Compile Include="vars.cs" />
+    <Compile Include="Kimshop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kimshop.Designer.cs">
+      <DependentUpon>Kimshop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="views\Customer\AddrInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Customer\AddrInfo.Designer.cs">
+      <DependentUpon>AddrInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Customer\CustomerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Customer\CustomerInfo.Designer.cs">
+      <DependentUpon>CustomerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Customer\Customers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Customer\Customers.Designer.cs">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Inventory\StockReceiveItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Inventory\StockReceiveItem.Designer.cs">
+      <DependentUpon>StockReceiveItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Inventory\StockReceives.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Inventory\StockReceives.Designer.cs">
+      <DependentUpon>StockReceives.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\CurrencyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\CurrencyInfo.Designer.cs">
+      <DependentUpon>CurrencyInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\CurrencyList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\CurrencyList.Designer.cs">
+      <DependentUpon>CurrencyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\ExchangeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\ExchangeInfo.Designer.cs">
+      <DependentUpon>ExchangeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\ExchangeMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\ExchangeMaster.Designer.cs">
+      <DependentUpon>ExchangeMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\ViewMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\ViewMaster.Designer.cs">
+      <DependentUpon>ViewMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Startup\AppLang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Startup\AppLang.Designer.cs">
+      <DependentUpon>AppLang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Startup\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Startup\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Startup\SysConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Startup\SysConfig.Designer.cs">
+      <DependentUpon>SysConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Vendor\VendorBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Vendor\VendorBox.Designer.cs">
+      <DependentUpon>VendorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Vendor\VendorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Vendor\VendorInfo.Designer.cs">
+      <DependentUpon>VendorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Vendor\Vendors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Vendor\Vendors.Designer.cs">
+      <DependentUpon>Vendors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Inventory\Inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Inventory\Inventory.Designer.cs">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\ItemInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\ItemInfo.Designer.cs">
+      <DependentUpon>ItemInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\ItemMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\ItemMaster.Designer.cs">
+      <DependentUpon>ItemMaster.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Kimshop.resx">
+      <DependentUpon>Kimshop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Inventory\InventoryHost.resx">
+      <DependentUpon>InventoryHost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="views\Customer\AddrInfo.resx">
+      <DependentUpon>AddrInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Customer\CustomerInfo.resx">
+      <DependentUpon>CustomerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Customer\Customers.resx">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Inventory\StockReceiveItem.resx">
+      <DependentUpon>StockReceiveItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Inventory\StockReceives.resx">
+      <DependentUpon>StockReceives.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\CurrencyInfo.resx">
+      <DependentUpon>CurrencyInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\CurrencyList.resx">
+      <DependentUpon>CurrencyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\ExchangeInfo.resx">
+      <DependentUpon>ExchangeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\ExchangeMaster.resx">
+      <DependentUpon>ExchangeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\ViewMaster.resx">
+      <DependentUpon>ViewMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Startup\AppLang.resx">
+      <DependentUpon>AppLang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Startup\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Startup\SysConfig.resx">
+      <DependentUpon>SysConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Vendor\VendorBox.resx">
+      <DependentUpon>VendorBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Vendor\VendorInfo.resx">
+      <DependentUpon>VendorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Vendor\Vendors.resx">
+      <DependentUpon>Vendors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Inventory\Inventory.resx">
+      <DependentUpon>Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\ItemInfo.resx">
+      <DependentUpon>ItemInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\ItemMaster.resx">
+      <DependentUpon>ItemMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="data\KIM1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KIM1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include=".editorconfig" />
+    <None Include="data\KIM1.edmx.diagram">
+      <DependentUpon>KIM1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\KIM1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KIM1.edmx</DependentUpon>
+      <LastGenOutput>KIM1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="data\KIM1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KIM1.edmx</DependentUpon>
+      <LastGenOutput>KIM1.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\3OF9.TTF" />
+    <None Include="Resources\DataContainer_MoveNextHS.png" />
+    <None Include="Resources\IDAutomationHC39M.ttf" />
+    <None Include="Resources\REFRESH2.ICO" />
+    <None Include="Resources\CLOSE2.ICO" />
+    <None Include="Resources\ZoomHS.png" />
+    <None Include="Resources\WRENCH.ICO" />
+    <None Include="Resources\Warning.png" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\settingapp24.png" />
+    <None Include="Resources\server.gif" />
+    <None Include="Resources\saveHS.png" />
+    <None Include="Resources\REFRESH1.ICO" />
+    <None Include="Resources\REFRESH.ICO" />
+    <None Include="Resources\PushpinHS.png" />
+    <None Include="Resources\PrintHS.png" />
+    <None Include="Resources\openHS.png" />
+    <None Include="Resources\MonthlyViewHS.png" />
+    <None Include="Resources\LockSmall.gif" />
+    <None Include="Resources\key.gif" />
+    <None Include="Resources\image043.png" />
+    <None Include="Resources\FindHS.png" />
+    <None Include="Resources\Filter2HS.png" />
+    <None Include="Resources\eye.png" />
+    <None Include="Resources\employes.ico" />
+    <None Include="Resources\Edit.gif" />
+    <None Include="Resources\DeleteHS.png" />
+    <None Include="Resources\database.gif" />
+    <None Include="Resources\computer.png" />
+    <None Include="Resources\CommentHS.png" />
+    <None Include="Resources\CLOSE1.ICO" />
+    <None Include="Resources\CLOSE.ICO" />
+    <None Include="Resources\blueheader.bmp" />
+    <None Include="Resources\apply.png" />
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\cs\Microsoft.CodeAnalysis.VersionCheckAnalyzer.resources.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Humanizer.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.CodeQuality.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetCore.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.2.9.6\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.2.9.6\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeQuality.Analyzers.2.9.6\build\Microsoft.CodeQuality.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetCore.Analyzers.2.9.6\build\Microsoft.NetCore.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.NetFramework.Analyzers.2.9.6\build\Microsoft.NetFramework.Analyzers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.FxCopAnalyzers.2.9.6\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+</Project>
