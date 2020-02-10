@@ -95,6 +95,7 @@ namespace KIM
             catch
             {
                 canRunApplication = false;
+                //MessageBox.Show("Application can't start!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             if (canRunApplication)
