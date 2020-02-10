@@ -13,31 +13,39 @@ namespace KIM.models.Warehouse
         private readonly KIMEntities _context;
         public SkuDAL() => _context = new KIMEntities();
 
-        public DataTable getSKUs() => _context.SKUs.OrderBy(o => o.SKUCode).ToDataTable();
-        public SKU getSKUbyId(string skuCode) => _context.SKUs.Find(skuCode);
+        public DataTable GetSKUs() => _context.SKUs.OrderBy(o => o.SKUCode).ToDataTable();
+        public SKU GetSKUbyId(string skuCode) => _context.SKUs.Find(skuCode);
 
-        public int removeSUK(string skuCode)
+        public int RemoveSUK(string skuCode)
         {
-            _context.SKUs.Remove(getSKUbyId(skuCode));
+            _context.SKUs.Remove(GetSKUbyId(skuCode));
             return _context.SaveChanges();
         }
 
-        public int updateSKU(SKU sku,DataActionMode mode)
+        public int UpdateSKU(SKU sku,DataActionMode mode)
         {
-            switch (mode)
+            try
             {
-                case DataActionMode.Add:
-                    _context.SKUs.Add(sku);
-                    break;
+                switch (mode)
+                {
+                    case DataActionMode.Add:
+                        _context.SKUs.Add(sku);
+                        break;
 
-                case DataActionMode.Edit:
-                    var _sku = getSKUbyId(sku.SKUCode);
-                    _sku.SKUCode = sku.SKUCode;
-                    _sku.SKUDetail = sku.SKUDetail;
-                    break;
+                    case DataActionMode.Edit:
+                        var _sku = GetSKUbyId(sku.SKUCode);
+                        _sku.SKUCode = sku.SKUCode;
+                        _sku.SKUDetail = sku.SKUDetail;
+                        _sku.ConvertFactor = sku.ConvertFactor;
+                        break;
+                }
+
+                return _context.SaveChanges();
             }
-
-            return _context.SaveChanges();
+            catch
+            {
+                return 0;
+            }
         }
 
     }

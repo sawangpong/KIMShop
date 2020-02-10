@@ -16,8 +16,9 @@ namespace KIM.data
     {
         public int SKI_ID { get; set; }
         public bool IsPosted { get; set; }
-        public string Code { get; set; }
-        public string DocRef { get; set; }
+        public string SK_Code { get; set; }
+        public string SKR_DOC_NUM { get; set; }
+        public int ItemId { get; set; }
         public string ItemNo { get; set; }
         public string ItemName { get; set; }
         public string Currency { get; set; }

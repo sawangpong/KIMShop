@@ -12,29 +12,36 @@ namespace KIM.models.Warehouse
     {
         private readonly KIMEntities _context;
         public WarehouseDAL() => _context = new KIMEntities();
-        public DataTable getWarehouses() => _context.WareHouses.OrderBy(o => o.WHCode).ToDataTable();
+        public List<WareHouse> GetWarehouses() => _context.WareHouses.OrderBy(o => o.WHCode).ToList();
 
-        public WareHouse getWarehouseById(string whCode) => _context.WareHouses.Find(whCode);
+        public WareHouse GetWarehouseById(string Code) => _context.WareHouses.Find(Code);
 
-        public int removeWarehouse(string whCode)
+        public int RemoveWarehouse(string Code)
         {
-            _context.WareHouses.Remove(getWarehouseById(whCode));
+            _context.WareHouses.Remove(GetWarehouseById(Code));
             return _context.SaveChanges();
         }
 
-        public int updateWarehouseInfo(WareHouse wareHouse, DataActionMode mode)
+        public int UpdateWarehouse(WareHouse wh, DataActionMode mode)
         {
-            switch (mode)
+            try
             {
-                case DataActionMode.Add:
-                    _context.WareHouses.Add(wareHouse);
-                    break;
-                case DataActionMode.Edit:
-                    var _wh = getWarehouseById(wareHouse.WHCode);
-                    _wh.WHName = wareHouse.WHName;
-                    break;
+                switch (mode)
+                {
+                    case DataActionMode.Add:
+                        _context.WareHouses.Add(wh);
+                        break;
+                    case DataActionMode.Edit:
+                        var _wh = GetWarehouseById(wh.WHCode);
+                        _wh.WHName = wh.WHName;
+                        break;
+                }
+                return _context.SaveChanges();
             }
-            return _context.SaveChanges();
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

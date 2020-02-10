@@ -1,4 +1,5 @@
 ﻿using KIM.utils;
+using KIM.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,12 @@ namespace KIM.views.Startup
                                 && !String.IsNullOrWhiteSpace(txtDatabaseName.Text)
                                 && !String.IsNullOrWhiteSpace(txtDbAdmin.Text));
         }
-
+        private void getLang()
+        {
+            cbxLang.DataSource = new models.AppSystem.SystemDAL().GetLanguageTable();
+            cbxLang.DisplayMember = "LanguageName";
+            cbxLang.ValueMember = "LangCode";
+        }
         private void updateLangauge()
         {
             if(vars.LANG_USE == "KH")
@@ -43,7 +49,6 @@ namespace KIM.views.Startup
                 lbServer.Text = "";
                 btnCancel.Text = "";
                 btnSave.Text = "";
-
             }
         }
 
@@ -56,6 +61,8 @@ namespace KIM.views.Startup
 
             _mode = mode;
             lbMode.Text = _mode.ToString();
+
+            getLang();
         }
 
         private void SysConfig_Load(object sender, EventArgs e)
@@ -63,16 +70,18 @@ namespace KIM.views.Startup
 
             if (_mode == DataActionMode.Create)
             {
-                txtCompanyCode.Text = vars.COMPANY_ID;
+                txtCompanyCode.Text = vars.COMPANY_CODE;
                 txtDatabaseName.Text = vars.DEFAULT_DB_NAME;
+                cbxLang.SelectedIndex = 0;
             }
             else
             {
-                txtCompanyCode.Text = vars.COMPANY_ID;
+                txtCompanyCode.Text = vars.COMPANY_CODE;
                 txtDatabaseName.Text = vars.DBNAME;
                 txtDbAdmin.Text = vars.DBUSER;
                 txtDbPassword.Text = vars.DBPassword;
                 txtServerName.Text = vars.SERVER;
+                cbxLang.SelectedValue = vars.LANG_USE;
             }
         }
 
@@ -83,7 +92,7 @@ namespace KIM.views.Startup
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (utilcore.CreateAppRegistry(vars.APP_KEY, txtCompanyCode.Text, txtServerName.Text, txtDatabaseName.Text, txtDbAdmin.Text, txtDbPassword.Text))
+            if (utilcore.CreateAppRegistry(vars.APP_KEY, txtCompanyCode.Text, txtServerName.Text, txtDatabaseName.Text, txtDbAdmin.Text, txtDbPassword.Text,vars.LANG_USE))
             {
                 // read configuration information for registry
                 if (utilcore.ReadAppRegistryConfiguration(vars.APP_KEY))
@@ -94,6 +103,18 @@ namespace KIM.views.Startup
                         vars.CONNECTION_NAME = utilcore.getCurrentConnectionString(vars.SYS_CONN_NAME);
                     }
                 }
+            }
+        }
+
+        private void cbxLang_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lbLangCode.Text = cbxLang.SelectedValue.ToString();
+            }
+            catch
+            {
+                lbLangCode.Text = "";
             }
         }
     }

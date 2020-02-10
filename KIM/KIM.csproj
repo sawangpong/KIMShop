@@ -113,16 +113,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>KIM1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="data\SKDOCH.cs">
+    <Compile Include="data\LangDict.cs">
       <DependentUpon>KIM1.tt</DependentUpon>
     </Compile>
-    <Compile Include="data\SKItemMaster.cs">
+    <Compile Include="data\OrderHH.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKBalance.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKIssueH.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKIssueItem.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SKReceiveH.cs">
       <DependentUpon>KIM1.tt</DependentUpon>
     </Compile>
     <Compile Include="data\SKReceiveItem.cs">
       <DependentUpon>KIM1.tt</DependentUpon>
     </Compile>
+    <Compile Include="data\SKTRAN.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
     <Compile Include="data\SKU.cs">
+      <DependentUpon>KIM1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="data\SysProfile.cs">
       <DependentUpon>KIM1.tt</DependentUpon>
     </Compile>
     <Compile Include="data\SystemLog.cs">
@@ -141,24 +159,42 @@
       <DependentUpon>KIM1.tt</DependentUpon>
     </Compile>
     <Compile Include="models\CRTermDAL.cs" />
-    <Compile Include="models\Warehouse\StockDAL.cs" />
-    <Compile Include="views\Inventory\InventoryHost.cs">
+    <Compile Include="models\AppSystem\SystemDAL.cs" />
+    <Compile Include="models\InitData.cs" />
+    <Compile Include="models\Order\OrderDAL.cs" />
+    <Compile Include="models\Tool\LangDAL.cs" />
+    <Compile Include="models\Warehouse\Inventory\ItemOnHand.cs" />
+    <Compile Include="models\Warehouse\Inventory\StockDAL.cs" />
+    <Compile Include="utils\LangUtils.cs" />
+    <Compile Include="views\Order\OrderMgr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Inventory\InventoryHost.Designer.cs">
+    <Compile Include="views\Order\OrderMgr.Designer.cs">
+      <DependentUpon>OrderMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Tool\UOMInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\UOMInfo.Designer.cs">
+      <DependentUpon>UOMInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\InventoryHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\InventoryHost.Designer.cs">
       <DependentUpon>InventoryHost.cs</DependentUpon>
     </Compile>
-    <Compile Include="models\Warehouse\AccountGroupDAL.cs" />
+    <Compile Include="models\Master\AccountGroupDAL.cs" />
     <Compile Include="models\Warehouse\CategoryDAL.cs" />
     <Compile Include="models\Warehouse\ItemMasterDAL.cs" />
     <Compile Include="models\Warehouse\SkuDAL.cs" />
-    <Compile Include="models\Warehouse\UOMDAL.cs" />
+    <Compile Include="models\Tool\UOMDAL.cs" />
     <Compile Include="SCHelperExtionsion.cs" />
-    <Compile Include="models\CurrencyDAL.cs" />
-    <Compile Include="models\CustomerDAL.cs" />
-    <Compile Include="models\ExchangeDAL.cs" />
-    <Compile Include="models\VendorDAL.cs" />
-    <Compile Include="models\UserDAL.cs" />
+    <Compile Include="models\Tool\CurrencyDAL.cs" />
+    <Compile Include="models\Master\CustomerDAL.cs" />
+    <Compile Include="models\Master\ExchangeDAL.cs" />
+    <Compile Include="models\Master\VendorDAL.cs" />
+    <Compile Include="models\Tool\UserDAL.cs" />
     <Compile Include="models\Warehouse\WarehouseDAL.cs" />
     <Compile Include="UserComponent\SearchButton.cs">
       <SubType>Component</SubType>
@@ -176,46 +212,88 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="views\Customer\AddrInfo.cs">
+    <Compile Include="views\Master\Customer\AddrInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Customer\AddrInfo.Designer.cs">
+    <Compile Include="views\Master\Customer\AddrInfo.Designer.cs">
       <DependentUpon>AddrInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Customer\CustomerInfo.cs">
+    <Compile Include="views\Master\Customer\CustomerInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Customer\CustomerInfo.Designer.cs">
+    <Compile Include="views\Master\Customer\CustomerInfo.Designer.cs">
       <DependentUpon>CustomerInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Customer\Customers.cs">
+    <Compile Include="views\Master\Customer\Customers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Customer\Customers.Designer.cs">
+    <Compile Include="views\Master\Customer\Customers.Designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Inventory\StockReceiveItem.cs">
+    <Compile Include="views\warehouse\Inventory\StockIssueInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Inventory\StockReceiveItem.Designer.cs">
+    <Compile Include="views\warehouse\Inventory\StockIssueInfo.Designer.cs">
+      <DependentUpon>StockIssueInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockIssueItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockIssueItem.Designer.cs">
+      <DependentUpon>StockIssueItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockIssues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockIssues.Designer.cs">
+      <DependentUpon>StockIssues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockOnhand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockOnhand.Designer.cs">
+      <DependentUpon>StockOnhand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockReceiveInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockReceiveInfo.Designer.cs">
+      <DependentUpon>StockReceiveInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockReceiveItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\Inventory\StockReceiveItem.Designer.cs">
       <DependentUpon>StockReceiveItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Inventory\StockReceives.cs">
+    <Compile Include="views\warehouse\Inventory\StockReceives.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Inventory\StockReceives.Designer.cs">
+    <Compile Include="views\warehouse\Inventory\StockReceives.Designer.cs">
       <DependentUpon>StockReceives.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Master\CurrencyInfo.cs">
+    <Compile Include="views\Master\AccountSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Master\CurrencyInfo.Designer.cs">
+    <Compile Include="views\Master\AccountSet.Designer.cs">
+      <DependentUpon>AccountSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\AccountGroupInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\AccountGroupInfo.Designer.cs">
+      <DependentUpon>AccountGroupInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Tool\CurrencyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\CurrencyInfo.Designer.cs">
       <DependentUpon>CurrencyInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Master\CurrencyList.cs">
+    <Compile Include="views\Tool\CurrencyList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Master\CurrencyList.Designer.cs">
+    <Compile Include="views\Tool\CurrencyList.Designer.cs">
       <DependentUpon>CurrencyList.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Master\ExchangeInfo.cs">
@@ -230,17 +308,35 @@
     <Compile Include="views\Master\ExchangeMaster.Designer.cs">
       <DependentUpon>ExchangeMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\Tool\LangItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\LangItem.Designer.cs">
+      <DependentUpon>LangItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Tool\LangManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\LangManager.Designer.cs">
+      <DependentUpon>LangManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Tool\MemberInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\MemberInfo.Designer.cs">
+      <DependentUpon>MemberInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\Master\ViewMaster.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\Master\ViewMaster.Designer.cs">
       <DependentUpon>ViewMaster.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Startup\AppLang.cs">
+    <Compile Include="views\Startup\About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Startup\AppLang.Designer.cs">
-      <DependentUpon>AppLang.cs</DependentUpon>
+    <Compile Include="views\Startup\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="views\Startup\Login.cs">
       <SubType>Form</SubType>
@@ -248,35 +344,65 @@
     <Compile Include="views\Startup\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\Tool\Member.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\Member.Designer.cs">
+      <DependentUpon>Member.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\Startup\SysConfig.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\Startup\SysConfig.Designer.cs">
       <DependentUpon>SysConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Vendor\VendorBox.cs">
+    <Compile Include="views\Tool\SysSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Vendor\VendorBox.Designer.cs">
+    <Compile Include="views\Tool\SysSetting.Designer.cs">
+      <DependentUpon>SysSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Tool\UOMMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Tool\UOMMaster.Designer.cs">
+      <DependentUpon>UOMMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\Master\Vendor\VendorBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Master\Vendor\VendorBox.Designer.cs">
       <DependentUpon>VendorBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Vendor\VendorInfo.cs">
+    <Compile Include="views\Master\Vendor\VendorInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Vendor\VendorInfo.Designer.cs">
+    <Compile Include="views\Master\Vendor\VendorInfo.Designer.cs">
       <DependentUpon>VendorInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Vendor\Vendors.cs">
+    <Compile Include="views\Master\Vendor\Vendors.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Vendor\Vendors.Designer.cs">
+    <Compile Include="views\Master\Vendor\Vendors.Designer.cs">
       <DependentUpon>Vendors.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\Inventory\Inventory.cs">
+    <Compile Include="views\warehouse\Inventory\Inventory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\Inventory\Inventory.Designer.cs">
+    <Compile Include="views\warehouse\Inventory\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\ItemCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\ItemCategory.Designer.cs">
+      <DependentUpon>ItemCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\ItemCatInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\ItemCatInfo.Designer.cs">
+      <DependentUpon>ItemCatInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="views\warehouse\ItemInfo.cs">
       <SubType>Form</SubType>
@@ -290,10 +416,46 @@
     <Compile Include="views\warehouse\ItemMaster.Designer.cs">
       <DependentUpon>ItemMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\warehouse\SKUinfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\SKUinfo.Designer.cs">
+      <DependentUpon>SKUinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\SKUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\SKUnit.Designer.cs">
+      <DependentUpon>SKUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\StockItemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\StockItemList.Designer.cs">
+      <DependentUpon>StockItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\WHLoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\WHLoc.Designer.cs">
+      <DependentUpon>WHLoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\warehouse\WHLocInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\warehouse\WHLocInfo.Designer.cs">
+      <DependentUpon>WHLocInfo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Kimshop.resx">
       <DependentUpon>Kimshop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Inventory\InventoryHost.resx">
+    <EmbeddedResource Include="views\Order\OrderMgr.resx">
+      <DependentUpon>OrderMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\UOMInfo.resx">
+      <DependentUpon>UOMInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\InventoryHost.resx">
       <DependentUpon>InventoryHost.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -306,25 +468,46 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="views\Customer\AddrInfo.resx">
+    <EmbeddedResource Include="views\Master\Customer\AddrInfo.resx">
       <DependentUpon>AddrInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Customer\CustomerInfo.resx">
+    <EmbeddedResource Include="views\Master\Customer\CustomerInfo.resx">
       <DependentUpon>CustomerInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Customer\Customers.resx">
+    <EmbeddedResource Include="views\Master\Customer\Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Inventory\StockReceiveItem.resx">
+    <EmbeddedResource Include="views\warehouse\Inventory\StockIssueInfo.resx">
+      <DependentUpon>StockIssueInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\StockIssueItem.resx">
+      <DependentUpon>StockIssueItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\StockIssues.resx">
+      <DependentUpon>StockIssues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\StockOnhand.resx">
+      <DependentUpon>StockOnhand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\StockReceiveInfo.resx">
+      <DependentUpon>StockReceiveInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\Inventory\StockReceiveItem.resx">
       <DependentUpon>StockReceiveItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Inventory\StockReceives.resx">
+    <EmbeddedResource Include="views\warehouse\Inventory\StockReceives.resx">
       <DependentUpon>StockReceives.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Master\CurrencyInfo.resx">
+    <EmbeddedResource Include="views\Master\AccountSet.resx">
+      <DependentUpon>AccountSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\AccountGroupInfo.resx">
+      <DependentUpon>AccountGroupInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\CurrencyInfo.resx">
       <DependentUpon>CurrencyInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Master\CurrencyList.resx">
+    <EmbeddedResource Include="views\Tool\CurrencyList.resx">
       <DependentUpon>CurrencyList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Master\ExchangeInfo.resx">
@@ -333,35 +516,74 @@
     <EmbeddedResource Include="views\Master\ExchangeMaster.resx">
       <DependentUpon>ExchangeMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\LangItem.resx">
+      <DependentUpon>LangItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\LangManager.resx">
+      <DependentUpon>LangManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\MemberInfo.resx">
+      <DependentUpon>MemberInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Master\ViewMaster.resx">
       <DependentUpon>ViewMaster.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Startup\AppLang.resx">
-      <DependentUpon>AppLang.cs</DependentUpon>
+    <EmbeddedResource Include="views\Startup\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Startup\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\Member.resx">
+      <DependentUpon>Member.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Startup\SysConfig.resx">
       <DependentUpon>SysConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Vendor\VendorBox.resx">
+    <EmbeddedResource Include="views\Tool\SysSetting.resx">
+      <DependentUpon>SysSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Tool\UOMMaster.resx">
+      <DependentUpon>UOMMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Master\Vendor\VendorBox.resx">
       <DependentUpon>VendorBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Vendor\VendorInfo.resx">
+    <EmbeddedResource Include="views\Master\Vendor\VendorInfo.resx">
       <DependentUpon>VendorInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Vendor\Vendors.resx">
+    <EmbeddedResource Include="views\Master\Vendor\Vendors.resx">
       <DependentUpon>Vendors.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\Inventory\Inventory.resx">
+    <EmbeddedResource Include="views\warehouse\Inventory\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\ItemCategory.resx">
+      <DependentUpon>ItemCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\ItemCatInfo.resx">
+      <DependentUpon>ItemCatInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\warehouse\ItemInfo.resx">
       <DependentUpon>ItemInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\warehouse\ItemMaster.resx">
       <DependentUpon>ItemMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\SKUinfo.resx">
+      <DependentUpon>SKUinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\SKUnit.resx">
+      <DependentUpon>SKUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\StockItemList.resx">
+      <DependentUpon>StockItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\WHLoc.resx">
+      <DependentUpon>WHLoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\warehouse\WHLocInfo.resx">
+      <DependentUpon>WHLocInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="data\KIM1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

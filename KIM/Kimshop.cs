@@ -1,7 +1,9 @@
-﻿using KIM.models;
+﻿using KIM.models.Tool;
 using KIM.utils;
 using KIM.views;
+using KIM.views.Tool;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,7 +18,7 @@ namespace KIM
     public partial class Kimshop : Form
     {
         #region class member
-        private string _lang="EN";
+        //private string _lang = "EN";
 
         #endregion
 
@@ -24,39 +26,34 @@ namespace KIM
 
         private void updateLangauge()
         {
-            if(_lang == "KH")
+            foreach (Control c in this.Controls)
             {
-                // Menu File
-                mnuFile.Text = "ឯកសារ";
-                mnuCustomer.Text = "អតិថិជន។";
-				mnuVendor.Text = "";
-				mnuExchange.Text = "";
-                mnuExit.Text = "ចេញ";
+                if (c is System.Windows.Forms.MenuStrip)
+                {
+                    System.Windows.Forms.MenuStrip mnu = c as System.Windows.Forms.MenuStrip;
+                    mnu.Text = mnu.GetLanguageValue();
 
-				// Menu Order
-				mnuOrder.Text = "";
-
-                // Menu Warehouse
-                mnuWarehouse.Text = "ឃ្លាំង។";
-                mnuInventory.Text = "សារពើភ័ណ្ឌ។";
-				mnuItemMaster.Text = "";
-
-                // Menu Tools
-                mnuTools.Text = "ឧបករណ៍។";
-                mnuSysConfig.Text = "ការកំណត់រចនាសម្ព័ន្ធប្រព័ន្ធ។";
-                mnuUserMember.Text = "សមាជិកអ្នកប្រើប្រាស់។";
-                mnuToolbars.Text = "របារឧបករណ៍។";
-				mnuCurrency.Text = "";
-
-                // toolbars
-                tsbtnCustomer.Text = "អតិថិជន";
-                tsbtnInventory.Text = "សារពើភ័ណ្ឌ។";
-
-				// Menu Help
-				mnuHelp.Text = "";
-				mnuAbout.Text = "";
+                    if (mnu.Items.Count > 0)
+                    {
+                        foreach (var mu in mnu.Items)
+                        {
+                            if (mu is System.Windows.Forms.ToolStripMenuItem)
+                            {
+                                System.Windows.Forms.ToolStripMenuItem _item = mu as System.Windows.Forms.ToolStripMenuItem;
+                                _item.Text = _item.GetLanguageValue();
+                                if (_item.DropDownItems.Count > 0)
+                                {
+                                    foreach (System.Windows.Forms.ToolStripItem item in _item.DropDownItems)
+                                    {
+                                        item.Text = item.GetLanguageValue();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-         }
+        }
 
         private void updatePermissions()
         {
@@ -69,10 +66,10 @@ namespace KIM
         {
             InitializeComponent();
             mnuToolbars.Checked = true;
-            _lang = vars.LANG_USE;
-            mnuLang.Text = _lang;
-            updateLangauge();
- 
+            //_lang = vars.LANG_USE;
+            LangUtils.GetLanguageByDefaultCode(vars.LANG_USE);
+            mnuLang.Text = vars.LANG_USE; //_lang;          updateLangauge();
+
             // change backgroud color for MDI form
             Controls.OfType<MdiClient>().FirstOrDefault().BackColor = Color.FromArgb(7, 100, 151); //Color.FromArgb(62, 73, 97);
 
@@ -92,32 +89,31 @@ namespace KIM
             tsMain.Visible = mnuToolbars.Checked;
         }
 
-		private void Kimshop_Load(object sender, EventArgs e)
-		{
-			tslbPermission.Text = $"{vars.USER_NAME}:[{vars.PERMISSION_NAME}]";
-		}
+        private void Kimshop_Load(object sender, EventArgs e)
+        {
+            tslbPermission.Text = $"{vars.USER_NAME}:[{vars.PERMISSION_NAME}]";
+        }
 
-		private void Kimshop_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			if (!new UserDAL().userLogout(vars.USER_ID))
-			{
-				MessageBox.Show("Error during update logout time, logout anyway!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
+        private void Kimshop_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!new UserDAL().UserLogout(vars.USER_ID))
+            {
+                MessageBox.Show("Error during update logout time, logout anyway!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-		private void mnuCurrency_Click(object sender, EventArgs e)
-		{
-            var currencies = views.Master.CurrencyList.GetInstance;
-			currencies.MdiParent = this;
-			currencies.StartPosition = FormStartPosition.CenterParent;
+        private void mnuCurrency_Click(object sender, EventArgs e)
+        {
+            var currencies = views.Tool.CurrencyList.GetInstance;
+            currencies.MdiParent = this;
+            currencies.StartPosition = FormStartPosition.CenterParent;
             currencies.BringToFront();
-			currencies.Show();
-
-		}
+            currencies.Show();
+        }
 
         private void mnuExchange_Click(object sender, EventArgs e)
         {
-             var exch = views.Master.ExchangeMaster.GetInstance;
+            var exch = views.Master.ExchangeMaster.GetInstance;
             exch.MdiParent = this;
             exch.StartPosition = FormStartPosition.CenterScreen;
             exch.BringToFront();
@@ -151,7 +147,7 @@ namespace KIM
 
         private void mnuCustomer_Click(object sender, EventArgs e)
         {
-            var customers = views.Customer.Customers.GetInstance;
+            var customers = views.Master.Customer.Customers.GetInstance;
             customers.StartPosition = FormStartPosition.CenterScreen;
             customers.MdiParent = this;
             customers.BringToFront();
@@ -160,7 +156,7 @@ namespace KIM
 
         private void mnuVendor_Click(object sender, EventArgs e)
         {
-            var suppliers = views.Supplier.vendor.GetInstance;
+            var suppliers = views.Master.Vendor.vendor.GetInstance;
             suppliers.StartPosition = FormStartPosition.CenterScreen;
             suppliers.MdiParent = this;
             suppliers.BringToFront();
@@ -174,7 +170,7 @@ namespace KIM
 
         private void mnuInventory_Click(object sender, EventArgs e)
         {
-            var inventory = views.Inventory.InventoryHost.GetInstance;
+            var inventory = views.warehouse.Inventory.InventoryHost.GetInstance;
             inventory.StartPosition = FormStartPosition.CenterScreen;
             inventory.WindowState = FormWindowState.Maximized;
             inventory.BringToFront();
@@ -193,6 +189,93 @@ namespace KIM
         private void tsbtnItemMaster_Click(object sender, EventArgs e)
         {
             mnuItemMaster.PerformClick();
+        }
+
+        private void mnuSetting_Click(object sender, EventArgs e)
+        {
+            using (var sysSetting = new SysSetting(vars.SYS_PROFILE.CompanyCode, DataActionMode.Edit))
+            {
+                sysSetting.StartPosition = FormStartPosition.CenterScreen;
+                sysSetting.ShowDialog(this);
+            }
+        }
+
+        private void mnuLangManager_Click(object sender, EventArgs e)
+        {
+            var langManager = views.Tool.LangManager.GetInstance;
+            langManager.StartPosition = FormStartPosition.CenterScreen;
+            langManager.MdiParent = this;
+            langManager.BringToFront();
+            langManager.Show();
+        }
+
+        private void mnuAbout_Click(object sender, EventArgs e)
+        {
+            var about = views.Startup.About.GetInstance;
+            about.Show(this);
+        }
+
+        private void mnuSKU_Click(object sender, EventArgs e)
+        {
+            var sku = views.warehouse.SKUnit.GetInstance;
+            sku.MdiParent = this;
+            sku.StartPosition = FormStartPosition.CenterScreen;
+            sku.BringToFront();
+            sku.Show();
+        }
+
+        private void mnuItemCategory_Click(object sender, EventArgs e)
+        {
+            var itemCat = views.warehouse.ItemCategory.GetInstance;
+            itemCat.MdiParent = this;
+            itemCat.StartPosition = FormStartPosition.CenterScreen;
+            itemCat.BringToFront();
+            itemCat.Show();
+        }
+
+        private void mnuWHLocation_Click(object sender, EventArgs e)
+        {
+            var whLoc = views.warehouse.WHLoc.GetInstance;
+            whLoc.MdiParent = this;
+            whLoc.StartPosition = FormStartPosition.CenterScreen;
+            whLoc.BringToFront();
+            whLoc.Show();
+        }
+
+        private void mnuAccountGroup_Click(object sender, EventArgs e)
+        {
+            var accSet = views.Master.AccountSet.GetInstance;
+            accSet.MdiParent = this;
+            accSet.StartPosition = FormStartPosition.CenterScreen;
+            accSet.BringToFront();
+            accSet.Show();
+        }
+
+        private void mnuUserMember_Click(object sender, EventArgs e)
+        {
+            var member = views.Tool.Member.GetInstance;
+            member.MdiParent = this;
+            member.StartPosition = FormStartPosition.CenterScreen;
+            member.BringToFront();
+            member.Show();
+        }
+
+        private void mnuUOM_Click(object sender, EventArgs e)
+        {
+            var uom = views.Tool.UOMMaster.GetInstance;
+            uom.MdiParent = this;
+            uom.StartPosition = FormStartPosition.CenterScreen;
+            uom.BringToFront();
+            uom.Show();
+        }
+
+        private void mnuOrderManager_Click(object sender, EventArgs e)
+        {
+            var ordManager = views.Order.OrderMgr.GetInstance;
+            ordManager.MdiParent = this;
+            ordManager.StartPosition = FormStartPosition.CenterScreen;
+            ordManager.BringToFront();
+            ordManager.Show();
         }
     }
 }

@@ -7,8 +7,6 @@
       <Diagram DiagramId="8042662b91e94ef68f0056fa6aef8720" Name="Diagram1">
         <EntityTypeShape EntityType="KIMModel.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="KIMModel.Currency" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="KIMModel.SKItemMaster" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="KIMModel.SKU" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="KIMModel.SystemLog" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="KIMModel.Exchange" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="KIMModel.CreditTerm" Width="1.5" PointX="2.625" PointY="7.75" />
@@ -20,9 +18,17 @@
         <EntityTypeShape EntityType="KIMModel.WareHouse" Width="1.5" PointX="2.625" PointY="9.375" />
         <EntityTypeShape EntityType="KIMModel.UOM" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="KIMModel.ItemMasterPic" Width="1.5" PointX="11.375" PointY="2.5" />
-        <EntityTypeShape EntityType="KIMModel.ItemMaster" Width="1.5" PointX="9.375" PointY="2.375" />
-        <EntityTypeShape EntityType="KIMModel.SKDOCH" Width="1.5" PointX="9.375" PointY="9.75" />
-        <EntityTypeShape EntityType="KIMModel.SKReceiveItem" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="KIMModel.SKBalance" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="KIMModel.SKReceiveH" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="KIMModel.ItemMaster" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KIMModel.SKReceiveItem" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="KIMModel.SKIssueH" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="KIMModel.SKIssueItem" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="KIMModel.SKTRAN" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="KIMModel.SysProfile" Width="1.5" PointX="7.375" PointY="13.75" />
+        <EntityTypeShape EntityType="KIMModel.LangDict" Width="1.5" PointX="9.375" PointY="5.75" />
+        <EntityTypeShape EntityType="KIMModel.SKU" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="KIMModel.OrderHH" Width="1.5" PointX="13.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

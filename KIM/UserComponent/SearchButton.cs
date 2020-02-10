@@ -14,7 +14,12 @@ namespace KIM.UserComponent
             this.Width = (int)((decimal)this.Height * 1.25m);
             this.Image = global::KIM.Properties.Resources.ZoomHS;
             this.Text = "";
+        }
 
+        protected override void OnResize(EventArgs e)
+        {
+            this.Width = (int)((decimal)this.Height * 1.25m);
+            base.OnResize(e);
         }
     }
 }

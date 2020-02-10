@@ -14,6 +14,7 @@ namespace KIM.data
     
     public partial class ItemMaster
     {
+        public int ItemId { get; set; }
         public string ItemNo { get; set; }
         public string ItemName { get; set; }
         public byte[] barcode { get; set; }

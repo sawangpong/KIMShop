@@ -34,8 +34,6 @@ namespace KIM.views.warehouse
             }
         }
 
-
-
         #endregion
 
         #region class helper
@@ -56,24 +54,14 @@ namespace KIM.views.warehouse
             dgv.DataSource = new ItemMasterDAL().getItemMasters(filter);
             dgv.Columns["InActive"].Visible = false;
             dgv.Columns["IsStockItem"].Visible = false;
+            dgv.Columns["ItemId"].Visible = false;
             dgv.Columns["StockItem"].HeaderText = "SK Item";
             dgv.Columns["StockItem"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["StockItem"].DefaultCellStyle.Font = new Font(dgv.Font, FontStyle.Bold);
 
-            /*
-            dgv.Columns["Barcode"].Visible = false;
-            dgv.Columns["VendorItemNo"].Visible = false;
-            dgv.Columns["AccGroup"].Visible = false;
-            dgv.Columns["WeightFactor"].Visible = false;
-              dgv.Columns["ImageLocate"].Visible = false;
-            dgv.Columns["CreateDate"].Visible = false;
-            dgv.Columns["CreateBY"].Visible = false;
-            dgv.Columns["ModifyDate"].Visible = false;
-            dgv.Columns["ModifyBy"].Visible = false;
-            */
             dgv.Columns["ItemNo"].HeaderText = "Item-No.";
             dgv.Columns["ItemName"].HeaderText = "Description";
-            dgv.Columns["ItemName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns["ItemName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgv.Columns["VendorId"].HeaderText = "Vendor";
             dgv.Columns["CatCode"].HeaderText = "CAT.";
             dgv.Columns["StockUnit"].HeaderText = "SKU";
@@ -133,7 +121,9 @@ namespace KIM.views.warehouse
         public ItemMaster()
         {
             InitializeComponent();
-            utilcore.SettingDataGrid(ref dgv);
+
+            dgv.DoubleBuffered();
+            dgv.SettingDataGrid();
         }
 
         private void ItemMaster_Load(object sender, EventArgs e)

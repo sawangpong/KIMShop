@@ -93,6 +93,7 @@
           <Key>
             <PropertyRef Name="ItemNo" />
           </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ItemNo" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="ItemName" Type="nvarchar" MaxLength="80" Nullable="false" />
           <Property Name="barcode" Type="image" />
@@ -129,15 +130,106 @@
           <Property Name="ItemNo" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="ItemPic" Type="image" />
         </EntityType>
-        <EntityType Name="SKDOCH">
+        <EntityType Name="LangDict">
           <Key>
-            <PropertyRef Name="DocRef" />
+            <PropertyRef Name="Keyword" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Keyword" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="EN_text" Type="nvarchar" MaxLength="100" />
+          <Property Name="KH_text" Type="nvarchar" MaxLength="100" />
+          <Property Name="TH_text" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="OrderHH">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="CustomerCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeliveryAddr" Type="nvarchar" MaxLength="500" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OrderAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CreditTerm" Type="nvarchar" MaxLength="50" />
+          <Property Name="Duedate" Type="datetime" Nullable="false" />
+          <Property Name="CollectionDate" Type="datetime" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="15" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SKBalance">
+          <Key>
+            <PropertyRef Name="SK_ITEMNO" />
+          </Key>
+          <Property Name="SKB_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKB_SKI" Type="int" Nullable="false" />
+          <Property Name="SK_ITEMNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SK_ITEMNAME" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="SKU" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="AVAI_QTY" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ONHAND" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BOOKING" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ON_ORDER" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="LASTUPDATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SKIssueH">
+          <Key>
+            <PropertyRef Name="ISSUE_NUM" />
+          </Key>
+          <Property Name="IssueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsPosted" Type="bit" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="SK_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ISSUE_NUM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="IssueDate" Type="datetime" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+          <Property Name="IssuedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="150" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SKIssueItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsPosted" Type="bit" Nullable="false" />
+          <Property Name="SK_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SKI_ISSUE_NUM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ItemNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="80" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="IssueQty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalItemCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalItemPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SKReceiveH">
+          <Key>
+            <PropertyRef Name="DOC_NUM" />
           </Key>
           <Property Name="DOC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IsPosted" Type="bit" Nullable="false" />
-          <Property Name="Code" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="DocRef" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PostedDate" Type="datetime" />
+          <Property Name="PostedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="SK_Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DOC_NUM" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="DocDate" Type="date" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="100" />
           <Property Name="ReceiveBy" Type="nvarchar" MaxLength="50" />
           <Property Name="Remark" Type="nvarchar" MaxLength="150" />
           <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -151,30 +243,17 @@
           <Property Name="ModifyBy" Type="nvarchar" MaxLength="50" />
           <Property Name="ModifyDate" Type="date" />
         </EntityType>
-        <EntityType Name="SKItemMaster">
-          <Key>
-            <PropertyRef Name="ItemNo" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemNo" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="150" />
-          <Property Name="SKU" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="PurUnit" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="ItemImg" Type="varchar" MaxLength="255" />
-          <Property Name="Category" Type="int" Nullable="false" />
-          <Property Name="VendorCode" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="SKUWeightG" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-        </EntityType>
         <EntityType Name="SKReceiveItems">
           <Key>
             <PropertyRef Name="SKI_ID" />
           </Key>
           <Property Name="SKI_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IsPosted" Type="bit" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="DocRef" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SK_Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SKR_DOC_NUM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="ItemNo" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="80" />
           <Property Name="Currency" Type="nvarchar" MaxLength="10" />
           <Property Name="Unit" Type="nvarchar" MaxLength="10" />
           <Property Name="UnitCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -186,12 +265,69 @@
           <Property Name="ItemTotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="AvgUnitCost" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="SKTRANS">
+          <Key>
+            <PropertyRef Name="SKT_ID" />
+          </Key>
+          <Property Name="SKT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SKT_SKR" Type="int" Nullable="false" />
+          <Property Name="SK_CODE" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SKT_STATUS" Type="int" Nullable="false" />
+          <Property Name="DOC_NUM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DOC_DATE" Type="datetime" Nullable="false" />
+          <Property Name="ITEMNO" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ITEMNAME" Type="nvarchar" MaxLength="80" />
+          <Property Name="SK_UNIT" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CURRENCY" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SKT_U_COST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SKT_QTY" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SKT_TOTALCOST" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="U_PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="U_DISCOUNT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="U_NET_PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="U_VAT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TOTAL_PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
         <EntityType Name="SKU">
           <Key>
             <PropertyRef Name="SKUCode" />
           </Key>
           <Property Name="SKUCode" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SKUDetail" Type="nvarchar" MaxLength="150" />
+          <Property Name="ConvertFactor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysProfile">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="ProfineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="TelFax" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DefaultLangCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ServerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DatabaseName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DBAdmin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DBAdminPassword" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ImageLocation" Type="nvarchar" MaxLength="255" />
+          <Property Name="HomeCurrency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="SourceCurrency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="TaxID" Type="nvarchar" MaxLength="20" />
+          <Property Name="VATRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ProfitMarkupRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DefaultWeightUOM" Type="nvarchar" MaxLength="10" />
+          <Property Name="DefaultWH" Type="nvarchar" MaxLength="10" />
+          <Property Name="AllowNagativeInventory" Type="bit" Nullable="false" />
+          <Property Name="CreditLimit" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CreditDuration" Type="int" Nullable="false" />
+          <Property Name="PaymentTerm" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="SystemLog">
           <Key>
@@ -259,10 +395,16 @@
           <EntitySet Name="Exchange" EntityType="Self.Exchange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemMaster" EntityType="Self.ItemMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemMasterPic" EntityType="Self.ItemMasterPic" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SKDOCH" EntityType="Self.SKDOCH" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SKItemMaster" EntityType="Self.SKItemMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LangDict" EntityType="Self.LangDict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderHH" EntityType="Self.OrderHH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SKBalance" EntityType="Self.SKBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SKIssueH" EntityType="Self.SKIssueH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SKIssueItem" EntityType="Self.SKIssueItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SKReceiveH" EntityType="Self.SKReceiveH" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SKReceiveItems" EntityType="Self.SKReceiveItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SKTRANS" EntityType="Self.SKTRANS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SKU" EntityType="Self.SKU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysProfile" EntityType="Self.SysProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemLog" EntityType="Self.SystemLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UOM" EntityType="Self.UOM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -276,8 +418,6 @@
         <EntityContainer Name="KIMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="KIMModel.User" />
           <EntitySet Name="Currencies" EntityType="KIMModel.Currency" />
-          <EntitySet Name="SKItemMasters" EntityType="KIMModel.SKItemMaster" />
-          <EntitySet Name="SKUs" EntityType="KIMModel.SKU" />
           <EntitySet Name="SystemLogs" EntityType="KIMModel.SystemLog" />
           <EntitySet Name="Exchanges" EntityType="KIMModel.Exchange" />
           <EntitySet Name="CreditTerms" EntityType="KIMModel.CreditTerm" />
@@ -289,9 +429,17 @@
           <EntitySet Name="WareHouses" EntityType="KIMModel.WareHouse" />
           <EntitySet Name="UOMs" EntityType="KIMModel.UOM" />
           <EntitySet Name="ItemMasterPics" EntityType="KIMModel.ItemMasterPic" />
+          <EntitySet Name="SKBalances" EntityType="KIMModel.SKBalance" />
+          <EntitySet Name="SKReceiveHs" EntityType="KIMModel.SKReceiveH" />
           <EntitySet Name="ItemMasters" EntityType="KIMModel.ItemMaster" />
-          <EntitySet Name="SKDOCHes" EntityType="KIMModel.SKDOCH" />
           <EntitySet Name="SKReceiveItems" EntityType="KIMModel.SKReceiveItem" />
+          <EntitySet Name="SKIssueHs" EntityType="KIMModel.SKIssueH" />
+          <EntitySet Name="SKIssueItems" EntityType="KIMModel.SKIssueItem" />
+          <EntitySet Name="SKTRANS" EntityType="KIMModel.SKTRAN" />
+          <EntitySet Name="SysProfiles" EntityType="KIMModel.SysProfile" />
+          <EntitySet Name="LangDicts" EntityType="KIMModel.LangDict" />
+          <EntitySet Name="SKUs" EntityType="KIMModel.SKU" />
+          <EntitySet Name="OrderHHs" EntityType="KIMModel.OrderHH" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -309,27 +457,6 @@
           </Key>
           <Property Name="CURCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CURdetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SKItemMaster">
-          <Key>
-            <PropertyRef Name="ItemNo" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="SKU" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="PurUnit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ItemImg" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="Int32" Nullable="false" />
-          <Property Name="VendorCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="SKUWeightG" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="SKU">
-          <Key>
-            <PropertyRef Name="SKUCode" />
-          </Key>
-          <Property Name="SKUCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="SKUDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SystemLog">
           <Key>
@@ -462,10 +589,51 @@
           <Property Name="ItemNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ItemPic" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="SKBalance">
+          <Key>
+            <PropertyRef Name="SK_ITEMNO" />
+          </Key>
+          <Property Name="SKB_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKB_SKI" Type="Int32" Nullable="false" />
+          <Property Name="SK_ITEMNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SK_ITEMNAME" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="SKU" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AVAI_QTY" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ONHAND" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="BOOKING" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ON_ORDER" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="LASTUPDATE" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="SKReceiveH">
+          <Key>
+            <PropertyRef Name="DOC_NUM" />
+          </Key>
+          <Property Name="DOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsPosted" Type="Boolean" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SK_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DOC_NUM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DocDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiveBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TaxAndClearing" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TransportCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="OtherServices" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalItemCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <EntityType Name="ItemMaster">
           <Key>
             <PropertyRef Name="ItemNo" />
           </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ItemNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ItemName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="barcode" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -494,38 +662,17 @@
           <Property Name="ModifyDate" Type="DateTime" Precision="3" />
           <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="SKDOCH">
-          <Key>
-            <PropertyRef Name="DocRef" />
-          </Key>
-          <Property Name="DOC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IsPosted" Type="Boolean" Nullable="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="DocRef" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="DocDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ReceiveBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Currency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="TaxAndClearing" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TransportCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="OtherServices" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalItemCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CreateDate" Type="DateTime" Precision="0" />
-          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ModifyDate" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="SKReceiveItem">
           <Key>
             <PropertyRef Name="SKI_ID" />
           </Key>
           <Property Name="SKI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IsPosted" Type="Boolean" Nullable="false" />
-          <Property Name="Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="DocRef" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SK_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SKR_DOC_NUM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="ItemNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Unit" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="UnitCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
@@ -536,6 +683,143 @@
           <Property Name="OtherCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ItemTotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="AvgUnitCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SKIssueH">
+          <Key>
+            <PropertyRef Name="ISSUE_NUM" />
+          </Key>
+          <Property Name="IssueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsPosted" Type="Boolean" Nullable="false" />
+          <Property Name="PostedDate" Type="DateTime" Precision="3" />
+          <Property Name="PostedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SK_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ISSUE_NUM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IssuedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TotalCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SKIssueItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsPosted" Type="Boolean" Nullable="false" />
+          <Property Name="SK_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SKI_ISSUE_NUM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Unit" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IssueQty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="UnitCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalItemCost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="UnitPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalItemPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SKTRAN">
+          <Key>
+            <PropertyRef Name="SKT_ID" />
+          </Key>
+          <Property Name="SKT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SKT_SKR" Type="Int32" Nullable="false" />
+          <Property Name="SK_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SKT_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="DOC_NUM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DOC_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ITEMNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ITEMNAME" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="SK_UNIT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CURRENCY" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SKT_U_COST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SKT_QTY" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SKT_TOTALCOST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="U_PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="U_DISCOUNT" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="U_NET_PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="U_VAT" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TOTAL_PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SysProfile">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+          </Key>
+          <Property Name="ProfineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TelFax" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultLangCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ServerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DatabaseName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DBAdmin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DBAdminPassword" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ImageLocation" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HomeCurrency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SourceCurrency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TaxID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VATRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ProfitMarkupRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DefaultWeightUOM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultWH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="AllowNagativeInventory" Type="Boolean" Nullable="false" />
+          <Property Name="CreditLimit" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreditDuration" Type="Int32" Nullable="false" />
+          <Property Name="PaymentTerm" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LangDict">
+          <Key>
+            <PropertyRef Name="Keyword" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Keyword" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="EN_text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="KH_text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TH_text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SKU">
+          <Key>
+            <PropertyRef Name="SKUCode" />
+          </Key>
+          <Property Name="SKUCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SKUDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ConvertFactor" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="OrderHH">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CustomerCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryAddr" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="Currency" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="OrderAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CreditTerm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duedate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CollectionDate" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifyDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -559,29 +843,6 @@
               <MappingFragment StoreEntitySet="Currency">
                 <ScalarProperty Name="CURdetail" ColumnName="CURdetail" />
                 <ScalarProperty Name="CURCode" ColumnName="CURCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SKItemMasters">
-            <EntityTypeMapping TypeName="KIMModel.SKItemMaster">
-              <MappingFragment StoreEntitySet="SKItemMaster">
-                <ScalarProperty Name="SKUWeightG" ColumnName="SKUWeightG" />
-                <ScalarProperty Name="VendorCode" ColumnName="VendorCode" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ItemImg" ColumnName="ItemImg" />
-                <ScalarProperty Name="PurUnit" ColumnName="PurUnit" />
-                <ScalarProperty Name="SKU" ColumnName="SKU" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SKUs">
-            <EntityTypeMapping TypeName="KIMModel.SKU">
-              <MappingFragment StoreEntitySet="SKU">
-                <ScalarProperty Name="SKUDetail" ColumnName="SKUDetail" />
-                <ScalarProperty Name="SKUCode" ColumnName="SKUCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -727,6 +988,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SKBalances">
+            <EntityTypeMapping TypeName="KIMModel.SKBalance">
+              <MappingFragment StoreEntitySet="SKBalance">
+                <ScalarProperty Name="LASTUPDATE" ColumnName="LASTUPDATE" />
+                <ScalarProperty Name="ON_ORDER" ColumnName="ON_ORDER" />
+                <ScalarProperty Name="BOOKING" ColumnName="BOOKING" />
+                <ScalarProperty Name="ONHAND" ColumnName="ONHAND" />
+                <ScalarProperty Name="AVAI_QTY" ColumnName="AVAI_QTY" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="SK_ITEMNAME" ColumnName="SK_ITEMNAME" />
+                <ScalarProperty Name="SK_ITEMNO" ColumnName="SK_ITEMNO" />
+                <ScalarProperty Name="SKB_SKI" ColumnName="SKB_SKI" />
+                <ScalarProperty Name="SKB_ID" ColumnName="SKB_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKReceiveHs">
+            <EntityTypeMapping TypeName="KIMModel.SKReceiveH">
+              <MappingFragment StoreEntitySet="SKReceiveH">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="TotalItemCost" ColumnName="TotalItemCost" />
+                <ScalarProperty Name="OtherServices" ColumnName="OtherServices" />
+                <ScalarProperty Name="TransportCost" ColumnName="TransportCost" />
+                <ScalarProperty Name="TaxAndClearing" ColumnName="TaxAndClearing" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ReceiveBy" ColumnName="ReceiveBy" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
+                <ScalarProperty Name="DOC_NUM" ColumnName="DOC_NUM" />
+                <ScalarProperty Name="SK_Code" ColumnName="SK_Code" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="IsPosted" ColumnName="IsPosted" />
+                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ItemMasters">
             <EntityTypeMapping TypeName="KIMModel.ItemMaster">
               <MappingFragment StoreEntitySet="ItemMaster">
@@ -757,29 +1060,7 @@
                 <ScalarProperty Name="barcode" ColumnName="barcode" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SKDOCHes">
-            <EntityTypeMapping TypeName="KIMModel.SKDOCH">
-              <MappingFragment StoreEntitySet="SKDOCH">
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="TotalItemCost" ColumnName="TotalItemCost" />
-                <ScalarProperty Name="OtherServices" ColumnName="OtherServices" />
-                <ScalarProperty Name="TransportCost" ColumnName="TransportCost" />
-                <ScalarProperty Name="TaxAndClearing" ColumnName="TaxAndClearing" />
-                <ScalarProperty Name="Currency" ColumnName="Currency" />
-                <ScalarProperty Name="Remark" ColumnName="Remark" />
-                <ScalarProperty Name="ReceiveBy" ColumnName="ReceiveBy" />
-                <ScalarProperty Name="DocDate" ColumnName="DocDate" />
-                <ScalarProperty Name="DocRef" ColumnName="DocRef" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="IsPosted" ColumnName="IsPosted" />
-                <ScalarProperty Name="DOC_ID" ColumnName="DOC_ID" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -798,10 +1079,155 @@
                 <ScalarProperty Name="Currency" ColumnName="Currency" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
-                <ScalarProperty Name="DocRef" ColumnName="DocRef" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="SKR_DOC_NUM" ColumnName="SKR_DOC_NUM" />
+                <ScalarProperty Name="SK_Code" ColumnName="SK_Code" />
                 <ScalarProperty Name="IsPosted" ColumnName="IsPosted" />
                 <ScalarProperty Name="SKI_ID" ColumnName="SKI_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKIssueHs">
+            <EntityTypeMapping TypeName="KIMModel.SKIssueH">
+              <MappingFragment StoreEntitySet="SKIssueH">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="ISSUE_NUM" ColumnName="ISSUE_NUM" />
+                <ScalarProperty Name="SK_Code" ColumnName="SK_Code" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="PostedDate" ColumnName="PostedDate" />
+                <ScalarProperty Name="IsPosted" ColumnName="IsPosted" />
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKIssueItems">
+            <EntityTypeMapping TypeName="KIMModel.SKIssueItem">
+              <MappingFragment StoreEntitySet="SKIssueItem">
+                <ScalarProperty Name="TotalItemPrice" ColumnName="TotalItemPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="TotalItemCost" ColumnName="TotalItemCost" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="IssueQty" ColumnName="IssueQty" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemNo" ColumnName="ItemNo" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="SKI_ISSUE_NUM" ColumnName="SKI_ISSUE_NUM" />
+                <ScalarProperty Name="SK_Code" ColumnName="SK_Code" />
+                <ScalarProperty Name="IsPosted" ColumnName="IsPosted" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKTRANS">
+            <EntityTypeMapping TypeName="KIMModel.SKTRAN">
+              <MappingFragment StoreEntitySet="SKTRANS">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+                <ScalarProperty Name="U_VAT" ColumnName="U_VAT" />
+                <ScalarProperty Name="U_NET_PRICE" ColumnName="U_NET_PRICE" />
+                <ScalarProperty Name="U_DISCOUNT" ColumnName="U_DISCOUNT" />
+                <ScalarProperty Name="U_PRICE" ColumnName="U_PRICE" />
+                <ScalarProperty Name="SKT_TOTALCOST" ColumnName="SKT_TOTALCOST" />
+                <ScalarProperty Name="SKT_QTY" ColumnName="SKT_QTY" />
+                <ScalarProperty Name="SKT_U_COST" ColumnName="SKT_U_COST" />
+                <ScalarProperty Name="CURRENCY" ColumnName="CURRENCY" />
+                <ScalarProperty Name="SK_UNIT" ColumnName="SK_UNIT" />
+                <ScalarProperty Name="ITEMNAME" ColumnName="ITEMNAME" />
+                <ScalarProperty Name="ITEMNO" ColumnName="ITEMNO" />
+                <ScalarProperty Name="DOC_DATE" ColumnName="DOC_DATE" />
+                <ScalarProperty Name="DOC_NUM" ColumnName="DOC_NUM" />
+                <ScalarProperty Name="SKT_STATUS" ColumnName="SKT_STATUS" />
+                <ScalarProperty Name="SK_CODE" ColumnName="SK_CODE" />
+                <ScalarProperty Name="SKT_SKR" ColumnName="SKT_SKR" />
+                <ScalarProperty Name="SKT_ID" ColumnName="SKT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysProfiles">
+            <EntityTypeMapping TypeName="KIMModel.SysProfile">
+              <MappingFragment StoreEntitySet="SysProfile">
+                <ScalarProperty Name="PaymentTerm" ColumnName="PaymentTerm" />
+                <ScalarProperty Name="CreditDuration" ColumnName="CreditDuration" />
+                <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+                <ScalarProperty Name="AllowNagativeInventory" ColumnName="AllowNagativeInventory" />
+                <ScalarProperty Name="DefaultWH" ColumnName="DefaultWH" />
+                <ScalarProperty Name="DefaultWeightUOM" ColumnName="DefaultWeightUOM" />
+                <ScalarProperty Name="ProfitMarkupRate" ColumnName="ProfitMarkupRate" />
+                <ScalarProperty Name="VATRate" ColumnName="VATRate" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+                <ScalarProperty Name="SourceCurrency" ColumnName="SourceCurrency" />
+                <ScalarProperty Name="HomeCurrency" ColumnName="HomeCurrency" />
+                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
+                <ScalarProperty Name="DBAdminPassword" ColumnName="DBAdminPassword" />
+                <ScalarProperty Name="DBAdmin" ColumnName="DBAdmin" />
+                <ScalarProperty Name="DatabaseName" ColumnName="DatabaseName" />
+                <ScalarProperty Name="ServerName" ColumnName="ServerName" />
+                <ScalarProperty Name="DefaultLangCode" ColumnName="DefaultLangCode" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelFax" ColumnName="TelFax" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="ProfineId" ColumnName="ProfineId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LangDicts">
+            <EntityTypeMapping TypeName="KIMModel.LangDict">
+              <MappingFragment StoreEntitySet="LangDict">
+                <ScalarProperty Name="TH_text" ColumnName="TH_text" />
+                <ScalarProperty Name="KH_text" ColumnName="KH_text" />
+                <ScalarProperty Name="EN_text" ColumnName="EN_text" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SKUs">
+            <EntityTypeMapping TypeName="KIMModel.SKU">
+              <MappingFragment StoreEntitySet="SKU">
+                <ScalarProperty Name="ConvertFactor" ColumnName="ConvertFactor" />
+                <ScalarProperty Name="SKUDetail" ColumnName="SKUDetail" />
+                <ScalarProperty Name="SKUCode" ColumnName="SKUCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderHHs">
+            <EntityTypeMapping TypeName="KIMModel.OrderHH">
+              <MappingFragment StoreEntitySet="OrderHH">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="ModifyBy" ColumnName="ModifyBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="CollectionDate" ColumnName="CollectionDate" />
+                <ScalarProperty Name="Duedate" ColumnName="Duedate" />
+                <ScalarProperty Name="CreditTerm" ColumnName="CreditTerm" />
+                <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="DeliveryAddr" ColumnName="DeliveryAddr" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerCode" ColumnName="CustomerCode" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

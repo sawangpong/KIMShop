@@ -10,8 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KIM.utils;
-using KIM.views.Vendor;
+using KIM.views.Master.Vendor;
 using KIM.models;
+using KIM.models.Tool;
+using KIM.models.Master;
 
 namespace KIM.views.warehouse
 {
@@ -30,7 +32,7 @@ namespace KIM.views.warehouse
 
         private void getCurrency()
         {
-            cbxCurrency.DataSource = new models.CurrencyDAL().getCurrencies();
+            cbxCurrency.DataSource = new models.Tool.CurrencyDAL().getCurrencies();
             cbxCurrency.DisplayMember = "CURCode";
             cbxCurrency.ValueMember = "CURCode";
         }
@@ -43,28 +45,28 @@ namespace KIM.views.warehouse
 
         private void getAccountGroups()
         {
-            cbxACC.DataSource = new AccountGroupDAL().getAccountGroups();
+            cbxACC.DataSource = new AccountGroupDAL().GetAccountGroups();
             cbxACC.DisplayMember = "AccName";
             cbxACC.ValueMember = "AccGroup";
         }
 
         private void getWarehouses()
         {
-            cbxWH.DataSource = new WarehouseDAL().getWarehouses();
+            cbxWH.DataSource = new WarehouseDAL().GetWarehouses();
             cbxWH.DisplayMember = "WHName";
             cbxWH.ValueMember = "WHCode";
         }
 
         private void getSKUs()
         {
-            cbxSKU.DataSource = new SkuDAL().getSKUs();
+            cbxSKU.DataSource = new SkuDAL().GetSKUs();
             cbxSKU.DisplayMember = "SKUCode";
             cbxSKU.ValueMember = "SKUCode";
         }
 
         private void getUOMs()
         {
-            cbxUOM.DataSource = new UOMDAL().getUOMs();
+            cbxUOM.DataSource = new UOMDAL().GetUOMs();
             cbxUOM.DisplayMember = "UOMName";
             cbxUOM.ValueMember = "UOMName";
         }
@@ -80,14 +82,15 @@ namespace KIM.views.warehouse
             btnClearPic.Enabled = picMaster.Image != null;
         }
 
-        private string getVendorName(string id) => new VendorDAL().getVendorById(id).VendorName;
-
+        private string getVendorName(string id) => new VendorDAL().GetVendorById(id).VendorName;
+           
         private void getItemInfo(string itemno)
         {
             switch (_mode)
             {
                 case DataActionMode.Add:
                     _itemMaster = new data.ItemMaster();
+                    _itemMaster.ItemId = 0;
                     _itemMaster.WeightFactor = 1.0m;
                     _itemMaster.MaxQty = 0m;
                     _itemMaster.MinQty = 0m;
@@ -128,7 +131,7 @@ namespace KIM.views.warehouse
             txtUnitFactor.Text = $"{_itemMaster.WeightFactor:N4}";
             txtVendorCode.Text = _itemMaster.VendorId;
             txtVendorItem.Text = _itemMaster.VendorItemNo;
-            txtVendorName.Text = (_mode == DataActionMode.Edit ? getVendorName(_itemMaster.VendorId) : "");
+            txtVendorName.Text = (_mode == DataActionMode.Edit ? (String.IsNullOrEmpty(_itemMaster.VendorId) ? "" :  getVendorName(_itemMaster.VendorId)) : "");
             txtReorderQ.Text = $"{_itemMaster.ReorderQty:N2}";
             txtMaxQStock.Text = $"{_itemMaster.MaxQty:N2}";
             txtMinQStock.Text = $"{_itemMaster.MinQty}";
@@ -147,7 +150,8 @@ namespace KIM.views.warehouse
             cbxUOM.Text = _itemMaster.WeightUnit;
             cbxCurrency.SelectedValue = _itemMaster.Currency;
             cbxWH.SelectedValue = _itemMaster.Warehouse;
-            
+
+            lbItemId.Text = $"{_itemMaster.ItemId}";
 
             // get item image
             if (_mode == DataActionMode.Edit)
@@ -192,7 +196,6 @@ namespace KIM.views.warehouse
                         {
                             if (new ItemMasterPicDAL().removeItemMasterPic(_itemMaster.ItemNo) <= 0)
                             {
-
                             }
                         }
                     }
@@ -214,7 +217,6 @@ namespace KIM.views.warehouse
         }
 
         #endregion
-
 
         public ItemInfo(string itemNo)
         {
@@ -245,7 +247,7 @@ namespace KIM.views.warehouse
             try
             {
                 _itemMaster.WeightUnit = cbxUOM.Text;
-                _itemMaster.WeightFactor = new UOMDAL().getUnitFactor(_itemMaster.WeightUnit);
+                _itemMaster.WeightFactor = new UOMDAL().GetUnitFactor(_itemMaster.WeightUnit);
                  txtUnitFactor.Text = $"{_itemMaster.WeightFactor:N4}";
             }
             catch
@@ -391,11 +393,6 @@ namespace KIM.views.warehouse
             }
         }
 
-        private void btnItemNo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbxCurrency_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -403,6 +400,24 @@ namespace KIM.views.warehouse
                 _itemMaster.Currency = cbxCurrency.SelectedValue.ToString();
             }
             catch { }
+        }
+
+        private void txt_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox _tb = sender as TextBox;
+            bool _valid = _tb.Text.IsNumeric();
+
+            if (_valid == false)
+            {
+                MessageBox.Show("Only numeric value accepted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _tb.Focus();
+                _tb.SelectAll();
+                e.Cancel = true;
+            }
+            else
+            {
+                _tb.Text = $"{_tb.Text:N2}";
+            }
         }
     }
 }

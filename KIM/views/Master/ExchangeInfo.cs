@@ -1,5 +1,6 @@
 ﻿using KIM.data;
 using KIM.models;
+using KIM.models.Master;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,7 @@ namespace KIM.views.Master
 
         private void updateLanguage()
         {
-            if(vars.LANG_USE == "KH")
+            if (vars.LANG_USE == "KH")
             {
                 lbTitle.Text = "";
                 lbCode.Text = "";
@@ -46,7 +47,7 @@ namespace KIM.views.Master
         }
         private void updateUI()
         {
-
+            btnSave.Enabled = !String.IsNullOrEmpty(txtExchangeRate.Text);
         }
 
         private void getExchangeInfo(int id)
@@ -100,8 +101,8 @@ namespace KIM.views.Master
         {
             if (txtDayValid.Text.IsNumeric())
             {
-                int _days = Convert.ToInt32(txtDayValid.Text);
-                  dtpExpire.Value = dtpExchDate.Value.AddDays(_days);
+                int _days = txtDayValid.ToInt32();
+                dtpExpire.Value = dtpExchDate.Value.AddDays(_days);
             }
         }
 
@@ -118,9 +119,9 @@ namespace KIM.views.Master
                 _exchange.CURCode = txtCurCode.Text;
             }
             _exchange.ExchDate = dtpExchDate.Value;
-            _exchange.ExchRate = Convert.ToDecimal(txtExchangeRate.Text);
+            _exchange.ExchRate = txtExchangeRate.ToDecimal();
             _exchange.ExpireDate = dtpExpire.Value;
-            _exchange.SpreadDay = Convert.ToInt32(txtDayValid.Text);
+            _exchange.SpreadDay = txtDayValid.ToInt32();
 
             updateExchange(_exchange);
         }
@@ -130,7 +131,7 @@ namespace KIM.views.Master
 
         }
 
- 
+
         private void txt_Validating(object sender, CancelEventArgs e)
         {
             TextBox _text = sender as TextBox;
@@ -147,8 +148,8 @@ namespace KIM.views.Master
                 switch (_text.Name)
                 {
                     case "txtExchangeRate":
-                        decimal _value = Convert.ToDecimal(_text.Text);
-                        if(_value <= 0.00m)
+                        decimal _value = _text.ToDecimal();
+                        if (_value <= 0.00m)
                         {
                             _value = 1.00m;
                             _text.Text = $"{_value:N4}";
@@ -156,8 +157,8 @@ namespace KIM.views.Master
                         break;
 
                     case "txtDayValid":
-                        int _dayValue = Convert.ToInt32(_text.Text);
-                        if(_dayValue <= 0)
+                        int _dayValue = _text.ToInt32();
+                        if (_dayValue <= 0)
                         {
                             _dayValue = 1;
                             _text.Text = $"{_dayValue}";
@@ -169,15 +170,7 @@ namespace KIM.views.Master
 
         private void txtExchangeRate_TextChanged(object sender, EventArgs e)
         {
-            //if (txtExchangeRate.Text.IsNumeric())
-            //{
-            //    decimal _rate = Convert.ToDecimal(txtExchangeRate.Text);
-            //    if(_rate <= 0.00m)
-            //    {
-            //        _rate = 1.00m;
-            //    }
-            //   // txtExchangeRate.Text = $"{_rate}";
-            //}
+            updateUI();
         }
     }
 }

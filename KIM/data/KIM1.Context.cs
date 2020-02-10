@@ -27,8 +27,6 @@ namespace KIM.data
     
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
-        public virtual DbSet<SKItemMaster> SKItemMasters { get; set; }
-        public virtual DbSet<SKU> SKUs { get; set; }
         public virtual DbSet<SystemLog> SystemLogs { get; set; }
         public virtual DbSet<Exchange> Exchanges { get; set; }
         public virtual DbSet<CreditTerm> CreditTerms { get; set; }
@@ -40,8 +38,16 @@ namespace KIM.data
         public virtual DbSet<WareHouse> WareHouses { get; set; }
         public virtual DbSet<UOM> UOMs { get; set; }
         public virtual DbSet<ItemMasterPic> ItemMasterPics { get; set; }
+        public virtual DbSet<SKBalance> SKBalances { get; set; }
+        public virtual DbSet<SKReceiveH> SKReceiveHs { get; set; }
         public virtual DbSet<ItemMaster> ItemMasters { get; set; }
-        public virtual DbSet<SKDOCH> SKDOCHes { get; set; }
         public virtual DbSet<SKReceiveItem> SKReceiveItems { get; set; }
+        public virtual DbSet<SKIssueH> SKIssueHs { get; set; }
+        public virtual DbSet<SKIssueItem> SKIssueItems { get; set; }
+        public virtual DbSet<SKTRAN> SKTRANS { get; set; }
+        public virtual DbSet<SysProfile> SysProfiles { get; set; }
+        public virtual DbSet<LangDict> LangDicts { get; set; }
+        public virtual DbSet<SKU> SKUs { get; set; }
+        public virtual DbSet<OrderHH> OrderHHs { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace KIM.models.Warehouse
         public CategoryDAL() => _context = new KIMEntities();
         public DataTable getCategories() => _context.Categories.OrderBy(o=>o.CatCode).ToDataTable();
         public DataTable getCategoryByName(string catName) => _context.Categories.Where(x => x.CatName.Contains(catName)).OrderBy(o => o.CatName).ToDataTable();
+
         public Category getCategoryById(string catCode) => _context.Categories.Find(catCode);
 
         public int removeCategory(string catCode)
@@ -24,20 +25,27 @@ namespace KIM.models.Warehouse
 
         public int updateCategory(Category cat, DataActionMode mode)
         {
-            switch (mode)
+            try
             {
-                case DataActionMode.Add:
-                    _context.Categories.Add(cat);
-                    break;
+                switch (mode)
+                {
+                    case DataActionMode.Add:
+                        _context.Categories.Add(cat);
+                        break;
 
-                case DataActionMode.Edit:
-                    var _cat = getCategoryById(cat.CatCode);
-                    _cat.CatCode = cat.CatCode;
-                    _cat.CatName = cat.CatName;
-                    break;
+                    case DataActionMode.Edit:
+                        var _cat = getCategoryById(cat.CatCode);
+                        _cat.CatCode = cat.CatCode;
+                        _cat.CatName = cat.CatName;
+                        break;
+                }
+
+                return _context.SaveChanges();
             }
-
-            return _context.SaveChanges();
+            catch
+            {
+                return 0;
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using KIM.data;
-using KIM.models;
+using KIM.models.Tool;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,7 +34,7 @@ namespace KIM.views.Startup
                 LogoutDT = null
             };
 
-            return new UserDAL().getNewUserId(_log);
+            return new UserDAL().GetNewUserId(_log);
         }
         private void updateUI()
         {
@@ -70,7 +70,7 @@ namespace KIM.views.Startup
         {
             try
             {
-                var userInfo = new UserDAL().getUserPermission(txtUserName.Text, txtPassword.Text);
+                var userInfo = new UserDAL().GetUserPermission(txtUserName.Text, txtPassword.Text);
 
                 if (userInfo == null || userInfo.PermissionClass == 0)
                 {

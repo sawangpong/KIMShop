@@ -49,34 +49,36 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.lbConnectionString);
             this.panel1.Controls.Add(this.lbLogin);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(431, 74);
+            this.panel1.Size = new System.Drawing.Size(411, 74);
             this.panel1.TabIndex = 0;
             // 
             // lbConnectionString
             // 
+            this.lbConnectionString.BackColor = System.Drawing.Color.Transparent;
             this.lbConnectionString.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lbConnectionString.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lbConnectionString.ForeColor = System.Drawing.Color.Yellow;
             this.lbConnectionString.Location = new System.Drawing.Point(0, 54);
             this.lbConnectionString.Name = "lbConnectionString";
-            this.lbConnectionString.Size = new System.Drawing.Size(431, 20);
+            this.lbConnectionString.Size = new System.Drawing.Size(411, 20);
             this.lbConnectionString.TabIndex = 1;
             this.lbConnectionString.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lbLogin
             // 
+            this.lbLogin.BackColor = System.Drawing.Color.Transparent;
             this.lbLogin.Dock = System.Windows.Forms.DockStyle.Top;
             this.lbLogin.Font = new System.Drawing.Font("Leelawadee UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lbLogin.ForeColor = System.Drawing.Color.White;
             this.lbLogin.Location = new System.Drawing.Point(0, 0);
             this.lbLogin.Name = "lbLogin";
-            this.lbLogin.Size = new System.Drawing.Size(431, 47);
+            this.lbLogin.Size = new System.Drawing.Size(411, 47);
             this.lbLogin.TabIndex = 0;
             this.lbLogin.Text = "Login";
             this.lbLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -86,17 +88,17 @@
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnLogin);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 213);
+            this.panel2.Location = new System.Drawing.Point(10, 203);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 20);
-            this.panel2.Size = new System.Drawing.Size(431, 65);
+            this.panel2.Size = new System.Drawing.Size(411, 65);
             this.panel2.TabIndex = 1;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCancel.Location = new System.Drawing.Point(262, 10);
+            this.btnCancel.Location = new System.Drawing.Point(242, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(119, 35);
             this.btnCancel.TabIndex = 1;
@@ -120,69 +122,74 @@
             this.panel4.Controls.Add(this.txtPassword);
             this.panel4.Controls.Add(this.lbPassword);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 106);
+            this.panel4.Location = new System.Drawing.Point(10, 124);
             this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(2);
-            this.panel4.Size = new System.Drawing.Size(431, 32);
+            this.panel4.Padding = new System.Windows.Forms.Padding(2, 2, 50, 2);
+            this.panel4.Size = new System.Drawing.Size(411, 40);
             this.panel4.TabIndex = 5;
             // 
             // txtPassword
             // 
-            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtPassword.Location = new System.Drawing.Point(169, 2);
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtPassword.Location = new System.Drawing.Point(169, 11);
             this.txtPassword.MaxLength = 15;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(195, 27);
+            this.txtPassword.Size = new System.Drawing.Size(192, 27);
             this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // lbPassword
             // 
             this.lbPassword.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbPassword.ForeColor = System.Drawing.Color.White;
             this.lbPassword.Location = new System.Drawing.Point(2, 2);
             this.lbPassword.Name = "lbPassword";
-            this.lbPassword.Size = new System.Drawing.Size(167, 28);
+            this.lbPassword.Size = new System.Drawing.Size(167, 36);
             this.lbPassword.TabIndex = 1;
             this.lbPassword.Text = "Password";
-            this.lbPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbPassword.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.txtUserName);
             this.panel3.Controls.Add(this.lbUsername);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 74);
+            this.panel3.Location = new System.Drawing.Point(10, 84);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(2);
-            this.panel3.Size = new System.Drawing.Size(431, 32);
+            this.panel3.Padding = new System.Windows.Forms.Padding(2, 2, 50, 2);
+            this.panel3.Size = new System.Drawing.Size(411, 40);
             this.panel3.TabIndex = 4;
             // 
             // txtUserName
             // 
-            this.txtUserName.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtUserName.Location = new System.Drawing.Point(169, 2);
+            this.txtUserName.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtUserName.Location = new System.Drawing.Point(169, 11);
             this.txtUserName.MaxLength = 50;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(195, 27);
+            this.txtUserName.Size = new System.Drawing.Size(192, 27);
             this.txtUserName.TabIndex = 1;
             this.txtUserName.TextChanged += new System.EventHandler(this.txtUserName_TextChanged);
             // 
             // lbUsername
             // 
             this.lbUsername.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbUsername.ForeColor = System.Drawing.Color.White;
             this.lbUsername.Location = new System.Drawing.Point(2, 2);
             this.lbUsername.Name = "lbUsername";
-            this.lbUsername.Size = new System.Drawing.Size(167, 28);
+            this.lbUsername.Size = new System.Drawing.Size(167, 36);
             this.lbUsername.TabIndex = 0;
             this.lbUsername.Text = "User name:";
-            this.lbUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbUsername.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
             // lbkConfig
             // 
+            this.lbkConfig.BackColor = System.Drawing.Color.Transparent;
             this.lbkConfig.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbkConfig.Location = new System.Drawing.Point(0, 178);
+            this.lbkConfig.ForeColor = System.Drawing.Color.LemonChiffon;
+            this.lbkConfig.LinkColor = System.Drawing.Color.NavajoWhite;
+            this.lbkConfig.Location = new System.Drawing.Point(10, 168);
             this.lbkConfig.Name = "lbkConfig";
-            this.lbkConfig.Size = new System.Drawing.Size(431, 35);
+            this.lbkConfig.Size = new System.Drawing.Size(411, 35);
             this.lbkConfig.TabIndex = 6;
             this.lbkConfig.TabStop = true;
             this.lbkConfig.Text = "Change system configuration";
@@ -193,6 +200,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(431, 278);
             this.Controls.Add(this.lbkConfig);
@@ -201,11 +209,12 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Leelawadee UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);

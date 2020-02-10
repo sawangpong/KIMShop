@@ -13,11 +13,13 @@ using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 
 using Microsoft.VisualBasic;
+using System.Reflection;
 
 namespace KIM.utils
 {
     public static class utilcore
     {
+        #region control utilities
         public static void SettingDataGrid(ref DataGridView dgv)
         {
             dgv.BackColor = Color.White;
@@ -37,6 +39,7 @@ namespace KIM.utils
             dgv.ReadOnly = true;
         }
 
+        #endregion
 
         #region Connection Utilities
 
@@ -59,7 +62,7 @@ namespace KIM.utils
             return _result;
         } // end CheckExistingRegistry
 
-        public static bool CreateAppRegistry(string appKey, string companyId, string serverName, string dbName, string dbUser, string dbPassword)
+        public static bool CreateAppRegistry(string appKey, string companyId, string serverName, string dbName, string dbUser, string dbPassword, string defaultLanguage)
         {
             bool _result = false;
             try
@@ -67,6 +70,7 @@ namespace KIM.utils
                 using (var _rk = Registry.CurrentUser.CreateSubKey(appKey))
                 {
                     _rk.SetValue("CompanyId", companyId);
+                    _rk.SetValue("DefaultLanguage", defaultLanguage);
                     _rk.SetValue("ServerName", serverName);
                     _rk.SetValue("DbName", dbName);
                     _rk.SetValue("DbUser", dbUser);
@@ -90,7 +94,8 @@ namespace KIM.utils
                 // -- read registry for default server
                 using (var _rk = Registry.CurrentUser.OpenSubKey(Key))
                 {
-                    vars.COMPANY_ID = _rk.GetValue("CompanyId").ToString();
+                    vars.COMPANY_CODE = _rk.GetValue("CompanyId").ToString();
+                    vars.LANG_USE = _rk.GetValue("DefaultLanguage").ToString();
                     vars.SERVER = _rk.GetValue("ServerName").ToString();
                     vars.DBNAME = _rk.GetValue("DbName").ToString();
                     vars.DBUSER = _rk.GetValue("DbUser").ToString();
@@ -100,7 +105,7 @@ namespace KIM.utils
             }
             catch (Exception ex)
             {
-                _result = false;
+                //_result = false;
                 throw new Exception("Error read configuration!", ex);
 
             }
@@ -187,7 +192,25 @@ namespace KIM.utils
 
         #endregion
 
+        public static string GetFolderPath()
+        {
+            string _result = "";
+            using (FolderBrowserDialog _folder = new FolderBrowserDialog())
+            {
+                _folder.Description = "Select the location of Image folder";
+                _folder.ShowNewFolderButton = false;
+                Type _type = _folder.GetType();
+                FieldInfo _fieldInfo = _type.GetField("rootFolder", BindingFlags.NonPublic | BindingFlags.Instance);
+                _fieldInfo.SetValue(_folder, 17);
 
+                if (_folder.ShowDialog() == DialogResult.OK)
+                {
+                    _result = _folder.SelectedPath;
+                }
+            }
+
+            return _result;
+        }
 
 
 

@@ -16,5 +16,6 @@ namespace KIM.data
     {
         public string SKUCode { get; set; }
         public string SKUDetail { get; set; }
+        public decimal ConvertFactor { get; set; }
     }
 }
